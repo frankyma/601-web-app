@@ -9,11 +9,14 @@
   <body>
     <h1>Find your Zodiac</h1>
     <label for="year">Input year 1900 - 2024</label
-    ><input id="year" type="number" min="1900" max="2024" maxlength="4" />
+    ><input id="year" type="number" min="1900" max="2024" />
     <div>
       <button type="button" id="add-btn">Get Zodiac</button>
       <button type="button" id="reset-btn">Reset</button>
     </div>
+    <p id="error">
+      No data found for that year. Please input a year from 1990 to 2024.
+    </p>
     <img src="images/template.jpg" alt="zodiac symbol" id="zodiac-img" />
     <h2 id="name"></h2>
     <p id="description"></p>

@@ -66,19 +66,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const numberElement = document.getElementById("year");
   const nameElement = document.getElementById("name");
   const descriptionElement = document.getElementById("description");
+  const errorElement = document.getElementById("error");
 
   function onGet() {
-    const year = Number(numberElement.value);
-    const { name, description } = zodiacLookup[year % 12];
-    imgElement.src = `images/${name}.jpg`;
-    nameElement.innerHTML = name;
-    descriptionElement.innerHTML = description;
+    const year = parseInt(numberElement.value);
+    if (isNaN(year) || year > 2024 || year < 1900) {
+      errorElement.style.display = "block";
+    } else {
+      errorElement.style.display = "none";
+      const { name, description } = zodiacLookup[year % 12];
+      imgElement.src = `images/${name}.jpg`;
+      nameElement.innerHTML = name;
+      descriptionElement.innerHTML = description;
+    }
   }
 
   addBtn = document.getElementById("add-btn");
   addBtn.addEventListener("click", onGet);
 
   function onReset() {
+    errorElement.style.display = "none";
     numberElement.value = undefined;
     imgElement.src = "images/template.jpg";
     nameElement.innerHTML = "";
