@@ -1,17 +1,17 @@
 import fToC from "./temperature-module.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const inputElement = document.getElementById("temperature-input");
   const resultElement = document.getElementById("converted-result");
   const formElement = document.getElementById("temperature-form");
 
-  function onConvert(e) {
+  function onSubmit(e) {
     e.preventDefault();
-    const fValue = Number(inputElement.value);
+    const formData = new FormData(e.target);
+    const tempInput = Number(formData.get("temperature-input"));
 
-    const converted = fToC(fValue);
+    const converted = fToC(tempInput);
     resultElement.innerHTML = converted;
   }
 
-  formElement.addEventListener("submit", onConvert);
+  formElement.addEventListener("submit", onSubmit);
 });
