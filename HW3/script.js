@@ -1,3 +1,5 @@
+import fToC from "./temperature-module.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const inputElement = document.getElementById("temperature-input");
   const resultElement = document.getElementById("converted-result");
@@ -7,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const fValue = Number(inputElement.value);
 
-    const converted = ((fValue - 32) * 5) / 9;
+    const converted = fToC(fValue);
     resultElement.innerHTML = converted;
   }
 
