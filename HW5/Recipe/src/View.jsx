@@ -5,7 +5,6 @@ import {
   Typography,
   List,
   ListItem,
-  ListItemButton,
   ListItemText,
   Button,
   Box,
@@ -13,16 +12,27 @@ import {
 
 function View({ name, description, steps, setIsEdit, imgSrc }) {
   return (
-    <Container sx={{ display: "flex", flexDirection: "column" }}>
-      <Typography variant="h2">{name}</Typography>
-      <Typography variant="h4">{description}</Typography>
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        "& > *": {
+          my: "1rem",
+        },
+      }}
+    >
+      <Typography variant="h2" color>
+        {name}
+      </Typography>
+      <Typography variant="h6">{description}</Typography>
       <Typography variant="h4">Steps</Typography>
       {imgSrc && (
         <Box
           component="img"
           sx={{
-            height: 255,
-            width: "fit-content",
+            height: "fit-content",
+            maxWidth: { xs: "100%", sm: "50%" },
           }}
           alt="Recipe image"
           src={imgSrc}
@@ -31,9 +41,10 @@ function View({ name, description, steps, setIsEdit, imgSrc }) {
       <List>
         {steps.map((step, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={`${index + 1}. ${step}`} />
-            </ListItemButton>
+            <ListItemText
+              primary={`${index + 1}. ${step}`}
+              primaryTypographyProps={{ variant: "h6" }}
+            />
           </ListItem>
         ))}
       </List>
@@ -42,6 +53,7 @@ function View({ name, description, steps, setIsEdit, imgSrc }) {
         variant="contained"
         color="primary"
         onClick={() => setIsEdit(true)}
+        fullWidth
       >
         Edit
       </Button>
