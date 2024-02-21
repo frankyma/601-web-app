@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Edit from "./Edit";
+import View from "./View";
 
 function App() {
   const [name, setName] = useState("");
@@ -19,7 +20,12 @@ function App() {
       setIsEdit={setIsEdit}
     ></Edit>
   ) : (
-    <div>View</div>
+    <View
+      name={name}
+      description={description}
+      steps={steps}
+      setIsEdit={setIsEdit}
+    />
   );
 }
 
