@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import {
+  Box,
   Button,
   Container,
   FormControl,
@@ -13,8 +14,7 @@ import {
 import PropTypes from "prop-types";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddIcon from "@mui/icons-material/Add";
-
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 function Edit({
   name,
   description,
@@ -56,6 +56,9 @@ function Edit({
       sx={{
         display: "flex",
         flexDirection: "column",
+        "& > *": {
+          my: "1rem",
+        },
       }}
     >
       <Typography variant="h2">Create Recipe</Typography>
@@ -86,7 +89,7 @@ function Edit({
       />
 
       <TextField
-        label="Image"
+        label="Image url"
         id="outlined-size-small"
         size="small"
         value={imgSrc}
@@ -94,18 +97,20 @@ function Edit({
           setImgSrc(event.target.value);
         }}
       />
-
-      <Typography variant="h4">
-        Steps (minimum 1)
+      <Box sx={{ display: "flex" }}>
+        <Typography variant="h4">Steps (minimum 1)</Typography>
         <IconButton
+          sx={{ ml: "auto" }}
           aria-label="add"
+          color="primary"
+          size="large"
           onClick={() => {
             setSteps([...steps, ""]);
           }}
         >
-          <AddIcon />
+          <AddCircleOutlineIcon fontSize="large" />
         </IconButton>
-      </Typography>
+      </Box>
 
       {steps.map((step, index) => (
         <FormControl variant="outlined" key={index}>
