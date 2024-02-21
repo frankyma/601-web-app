@@ -23,6 +23,8 @@ function Edit({
   setDescription,
   setSteps,
   setIsEdit,
+  imgSrc,
+  setImgSrc,
 }) {
   const onStepValueChange = useCallback(
     (e, index) => {
@@ -71,6 +73,18 @@ function Edit({
           setDescription(event.target.value);
         }}
       />
+
+      <TextField
+        required
+        label="Image"
+        id="outlined-size-small"
+        size="small"
+        value={imgSrc}
+        onChange={(event) => {
+          setImgSrc(event.target.value);
+        }}
+      />
+
       <Typography variant="h4">
         Steps
         <IconButton
@@ -109,7 +123,10 @@ function Edit({
       <Button
         variant="contained"
         color="primary"
-        onClick={() => setIsEdit(false)}
+        onClick={() => {
+          setSteps(steps.filter((step) => step !== ""));
+          setIsEdit(false);
+        }}
       >
         Save
       </Button>
@@ -118,13 +135,15 @@ function Edit({
 }
 
 Edit.propTypes = {
-  name: PropTypes.string,
-  description: PropTypes.string,
-  steps: PropTypes.array,
-  setName: PropTypes.func,
-  setDescription: PropTypes.func,
-  setSteps: PropTypes.func,
-  setIsEdit: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  steps: PropTypes.array.isRequired,
+  setName: PropTypes.func.isRequired,
+  setDescription: PropTypes.func.isRequired,
+  setSteps: PropTypes.func.isRequired,
+  setIsEdit: PropTypes.func.isRequired,
+  imgSrc: PropTypes.string.isRequired,
+  setImgSrc: PropTypes.func.isRequired,
 };
 
 export default Edit;
