@@ -17,15 +17,17 @@ function View({ name, description, steps, setIsEdit, imgSrc }) {
       <Typography variant="h2">{name}</Typography>
       <Typography variant="h4">{description}</Typography>
       <Typography variant="h4">Steps</Typography>
-      <Box
-        component="img"
-        sx={{
-          height: 255,
-          width: "fit-content",
-        }}
-        alt="Recipe image"
-        src={imgSrc}
-      />
+      {imgSrc && (
+        <Box
+          component="img"
+          sx={{
+            height: 255,
+            width: "fit-content",
+          }}
+          alt="Recipe image"
+          src={imgSrc}
+        />
+      )}
       <List>
         {steps.map((step, index) => (
           <ListItem key={index} disablePadding>

@@ -44,6 +44,13 @@ function Edit({
     [setSteps, steps]
   );
 
+  const isNameValid =
+    name.split(" ").length > 0 && name.split(" ").length <= 125;
+  const isDescriptionValid =
+    description.split(" ").length > 0 && description.split(" ").length <= 255;
+  const isStepsValid =
+    steps.length > 0 && steps.every((step) => step.length > 0);
+
   return (
     <Container
       sx={{
@@ -61,21 +68,24 @@ function Edit({
         onChange={(event) => {
           setName(event.target.value);
         }}
+        helperText="1 - 125 words"
+        error={!isNameValid}
       />
       <TextField
         required
         id="outlined-multiline-static"
         label="Description"
+        helperText="1 - 255 words"
         multiline
         rows={4}
         value={description}
         onChange={(event) => {
           setDescription(event.target.value);
         }}
+        error={!isDescriptionValid}
       />
 
       <TextField
-        required
         label="Image"
         id="outlined-size-small"
         size="small"
@@ -86,7 +96,7 @@ function Edit({
       />
 
       <Typography variant="h4">
-        Steps
+        Steps (minimum 1)
         <IconButton
           aria-label="add"
           onClick={() => {
@@ -124,9 +134,9 @@ function Edit({
         variant="contained"
         color="primary"
         onClick={() => {
-          setSteps(steps.filter((step) => step !== ""));
           setIsEdit(false);
         }}
+        disabled={!isNameValid || !isDescriptionValid || !isStepsValid}
       >
         Save
       </Button>
