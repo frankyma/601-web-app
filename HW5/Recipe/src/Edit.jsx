@@ -54,9 +54,15 @@ function Edit({
   }, [description, imgSrc, name, setIsEdit, steps]);
 
   const isNameValid =
-    name.split(" ").length > 0 && name.split(" ").length <= 125;
+    name.length > 0 &&
+    name.split(" ").length > 0 &&
+    name.split(" ").length <= 125;
+
   const isDescriptionValid =
-    description.split(" ").length > 0 && description.split(" ").length <= 255;
+    description.length > 0 &&
+    description.split(" ").length > 0 &&
+    description.split(" ").length <= 255;
+
   const isStepsValid =
     steps.length > 0 && steps.every((step) => step.length > 0);
 
