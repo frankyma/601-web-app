@@ -44,6 +44,15 @@ function Edit({
     [setSteps, steps]
   );
 
+  const onSave = useCallback(() => {
+    localStorage.setItem(
+      name,
+      JSON.stringify({ name, description, steps, imgSrc })
+    );
+
+    setIsEdit(false);
+  }, [description, imgSrc, name, setIsEdit, steps]);
+
   const isNameValid =
     name.split(" ").length > 0 && name.split(" ").length <= 125;
   const isDescriptionValid =
@@ -113,7 +122,7 @@ function Edit({
       </Box>
 
       {steps.map((step, index) => (
-        <FormControl variant="outlined" key={index}>
+        <FormControl variant="outlined" key={index} sx={{ my: 1 }}>
           <InputLabel htmlFor="outlined-adornment-step">Add step</InputLabel>
 
           <OutlinedInput
@@ -138,9 +147,7 @@ function Edit({
       <Button
         variant="contained"
         color="primary"
-        onClick={() => {
-          setIsEdit(false);
-        }}
+        onClick={onSave}
         disabled={!isNameValid || !isDescriptionValid || !isStepsValid}
       >
         Save
