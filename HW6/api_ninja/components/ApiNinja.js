@@ -34,23 +34,7 @@ export function ping() {
  * @author Andrew Sheehan <asheehan@bu.edu>
  * @license "MIT"
  */
-export function getDadJoke(targetId) {
-  fetch(_BASE_URL, {
-    url: _BASE_URL,
-    headers: requestHeader,
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      document.querySelector(`#${targetId}`).innerHTML = data[0].joke;
-    })
-    .catch((error) => {
-      console.error(error.message);
-    });
-}
-
-export function getJokeMetrics(ulId) {
+export function getDadJoke(jokeId, ulId) {
   fetch(_BASE_URL, {
     url: _BASE_URL,
     headers: requestHeader,
@@ -60,10 +44,16 @@ export function getJokeMetrics(ulId) {
     })
     .then((data) => {
       const joke = data[0].joke;
+
+      document.querySelector(`#${jokeId}`).innerHTML = joke;
+
       const jokeCharLength = joke.length;
       const jokeWordLength = joke.split(" ").length;
 
       const ul = document.querySelector(`#${ulId}`);
+      if (ul.childElementCount > 0) {
+        ul.innerHTML = "";
+      }
       const li = document.createElement("li");
       li.appendChild(
         document.createTextNode(`Joke Char Count: ${jokeCharLength}`)

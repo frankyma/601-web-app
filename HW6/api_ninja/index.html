@@ -41,15 +41,11 @@
       crossorigin="anonymous"
     ></script>
     <script type="module">
-      import { getDadJoke, getJokeMetrics } from "./components/ApiNinja.js";
+      import { getDadJoke } from "./components/ApiNinja.js";
 
       document.addEventListener("DOMContentLoaded", function (event) {
         document.querySelector("#getJokes").addEventListener("click", () => {
-          getDadJoke("joke");
-        });
-
-        document.querySelector("#getJokes").addEventListener("click", () => {
-          getJokeMetrics("metrics");
+          getDadJoke("joke", "metrics");
         });
       });
     </script>
