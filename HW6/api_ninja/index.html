@@ -41,12 +41,16 @@
       crossorigin="anonymous"
     ></script>
     <script type="module">
-      import { getDadJoke } from "./components/ApiNinja.js";
+      import { getDadJoke, getJokeMetric } from "./components/ApiNinja.js";
 
       document.addEventListener("DOMContentLoaded", function (event) {
-        document.querySelector("#getJokes").addEventListener("click", () => {
-          getDadJoke("joke", "metrics");
-        });
+        document
+          .querySelector("#getJokes")
+          .addEventListener("click", async () => {
+            const joke = await getDadJoke("joke");
+
+            getJokeMetric(joke, "metrics");
+          });
       });
     </script>
   </body>

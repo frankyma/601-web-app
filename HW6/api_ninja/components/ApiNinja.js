@@ -34,36 +34,38 @@ export function ping() {
  * @author Andrew Sheehan <asheehan@bu.edu>
  * @license "MIT"
  */
-export async function getDadJoke(jokeId, ulId) {
-  const response = await fetch(_BASE_URL, {
+export function getDadJoke(targetId) {
+  return fetch(_BASE_URL, {
     url: _BASE_URL,
     headers: requestHeader,
-  });
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const joke = data[0].joke;
+      document.querySelector(`#${targetId}`).innerHTML = data[0].joke;
+      return joke;
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
+}
 
-  try {
-    const data = await response.json();
-    const joke = data[0].joke;
+export function getJokeMetric(joke, ulId) {
+  const jokeCharLength = joke.length;
+  const jokeWordLength = joke.split(" ").length;
 
-    document.querySelector(`#${jokeId}`).innerHTML = joke;
-
-    const jokeCharLength = joke.length;
-    const jokeWordLength = joke.split(" ").length;
-
-    const ul = document.querySelector(`#${ulId}`);
-    if (ul.childElementCount > 0) {
-      ul.innerHTML = "";
-    }
-    const li = document.createElement("li");
-    li.appendChild(
-      document.createTextNode(`Joke Char Count: ${jokeCharLength}`)
-    );
-    const li2 = document.createElement("li");
-    li2.appendChild(
-      document.createTextNode(`Joke Word Count: ${jokeWordLength}`)
-    );
-    ul.appendChild(li);
-    ul.appendChild(li2);
-  } catch (error) {
-    console.error(error.message);
+  const ul = document.querySelector(`#${ulId}`);
+  if (ul.childElementCount > 0) {
+    ul.innerHTML = "";
   }
+  const li = document.createElement("li");
+  li.appendChild(document.createTextNode(`Joke Char Count: ${jokeCharLength}`));
+  const li2 = document.createElement("li");
+  li2.appendChild(
+    document.createTextNode(`Joke Word Count: ${jokeWordLength}`)
+  );
+  ul.appendChild(li);
+  ul.appendChild(li2);
 }
