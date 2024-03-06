@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q1</title>
+  </head>
+  <body>
+    <div>Div 1</div>
+    <div>Div 2</div>
+    <div>Div 3</div>
+    <div>Div 4</div>
+    <div>Div 5</div>
+    <p id="paragraph-1">Paragraph 1</p>
+    <p id="paragraph-2">Paragraph 2</p>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        for (let i = 3; i <= 5; i++) {
+          const currentTimeStamp = new Date().toLocaleString();
+          const newParagraph = document.createElement("p");
+          newParagraph.textContent = `New paragraph ${i}, timeStamp: ${currentTimeStamp}`;
+          document.body.appendChild(newParagraph);
+        }
+
+        const paragraphs = document.querySelectorAll("p");
+        paragraphs.forEach((paragraph, index) => {
+          if (index % 2 === 0) {
+            paragraph.style.backgroundColor = "pink";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
