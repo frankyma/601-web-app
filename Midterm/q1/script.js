@@ -2,13 +2,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const textInput = document.getElementById("text");
   const resultElement = document.getElementById("result");
 
+  let letters = [];
   function onAdd() {
     const rawText = textInput.value;
     const parsed = rawText.replace(/[^a-z]/gi, "");
-    resultElement.innerHTML = `Result: ${parsed}`;
+    parsed.split("").forEach((letter) => {
+      if (!letters.includes(letter)) {
+        letters.push(letter);
+      }
+    });
+
+    resultElement.innerHTML = `Result: ${letters.join(", ")}`;
   }
 
   function onReset() {
+    letters = [];
+    textInput.value = "";
     resultElement.innerHTML = "";
   }
 
