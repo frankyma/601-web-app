@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  font-family: "AR One Sans", sans-serif;
+}
+
+table {
+  background-color: #242329;
+  padding: 1rem;
+}
+
+th,
+td {
+  height: 2rem;
+  width: 2rem;
+}
+
+th {
+  color: #795851;
+  font-weight: normal;
+}
+
+td {
+  color: white;
+}
+
+#right {
+  background-color: #d76541;
+  width: 100px;
+  text-align: end;
+  padding: 1rem;
+}
+
+#right * {
+  margin: 0;
+}
+
+#right h1 {
+  font-size: 4rem;
+  color: white;
+}
